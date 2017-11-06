@@ -13,6 +13,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 const { ReduxAsyncConnect, loadOnServer } = require('redux-connect');
 import { configureStore } from './app/redux/store';
 import routes from './app/routes';
+import { receiveTextMessage } from './server/twilio';
 
 import { Html } from './app/containers';
 const manifest = require('../build/manifest.json');
@@ -78,6 +79,8 @@ app.get('*', (req, res) => {
       }
     });
 });
+
+app.post('/api/receiveTextMessage', receiveTextMessage);
 
 app.listen(appConfig.port, appConfig.host, (err) => {
   if (err) {

@@ -16,8 +16,7 @@
     "lint": "tslint \"src/**/**.ts*\""
   },
   "author": "Stephen Timko <s.w.timko@gmail.com>",
-  "contributors": [
-  ],
+  "contributors": [],
   "homepage": "https://github.com/stimko/brze",
   "repository": {
     "type": "git",
@@ -26,22 +25,6 @@
   "bugs": {
     "url": "https://github.com/stimko/brze/issues"
   },
-  "keywords": [
-    "react",
-    "redux",
-    "typescript",
-    "webpack",
-    "universal",
-    "isomorphic",
-    "starter",
-    "kit",
-    "boilerplate",
-    "hot reload",
-    "react-hot-loader",
-    "enzyme",
-    "mocha",
-    "chai"
-  ],
   "license": "MIT",
   "devDependencies": {
     "@types/chai": "^4.0.4",
@@ -102,7 +85,7 @@
     "tslint": "^4.3.1",
     "tslint-loader": "^3.3.0",
     "tslint-react": "^2.3.0",
-    "typescript": "2.4",
+    "typescript": "^2.6.0",
     "url-loader": "^0.6.2",
     "webpack": "^3.8.1",
     "webpack-dev-middleware": "^1.9.0",
