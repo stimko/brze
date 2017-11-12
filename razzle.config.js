@@ -5,7 +5,6 @@ module.exports = {
   modify(config, { target, dev }, webpack) {
     const appConfig = config;
     appConfig.module.rules[2].exclude.push(/\.(elm)$/)
-    //appConfig.module.noParse = [/.elm$/] 
     appConfig.resolve.extensions = config.resolve.extensions.concat([
       '.elm'
     ]);

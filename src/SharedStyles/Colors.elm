@@ -10,7 +10,7 @@ primary =
 
 brzeGreen : Color
 brzeGreen =
-    hex "22a69c"
+    hex "00a39c"
 
 
 white : Color

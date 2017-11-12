@@ -4,38 +4,31 @@ import BrzeCss
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.CssHelpers exposing (withNamespace)
-import Html.Events exposing (..)
-import Json.Decode
+import SignUp.SignUp exposing (..)
 
 
 { id, class, classList } =
     withNamespace "main"
 
 
+type Msg
+    = SignUp SignUpMsg
+
+
 type alias Model =
-    { counter : Int }
+    { signUp : SignUpModel }
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( Model 0, Cmd.none )
-
-
-decodeModel : Json.Decode.Decoder Model
-decodeModel =
-    Json.Decode.map Model
-        (Json.Decode.field "counter" Json.Decode.int)
-
-
-type Msg
-    = Inc
+    ( { signUp = signUpModel }, Cmd.none )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update message model =
+update message state =
     case message of
-        Inc ->
-            { model | counter = model.counter + 1 } ! []
+        SignUp signUpMessage ->
+            ( { state | signUp = signUpUpdate signUpMessage state.signUp }, Cmd.none )
 
 
 num : String -> Html Msg
@@ -47,20 +40,21 @@ oneTwoThree : Html Msg
 oneTwoThree =
     p [ class [ BrzeCss.Easy ] ]
         [ p [ class [ BrzeCss.VerticalBrze ] ] [ text "Brze" ]
-        , p []
-            [ text "It’s as simple as 1, 2, 3!"
-            , div []
-                [ num "1"
-                , span [] [ text "TEXT US at 848.702.3698" ]
+        , p [ class [ BrzeCss.Steps ] ]
+            [ span [] [ text "It’s as simple as ", b [ style [ ( "font-weight", "500" ) ] ] [ text "1, 2, 3" ], text "!" ]
+            , div [ class [ BrzeCss.NumWrapper ] ]
+                [ num "1 "
+                , span [] [ span [ style [ ( "font-weight", "500" ) ] ] [ text "TEXT US " ], text "at ", b [ style [ ( "font-weight", "500" ) ] ] [ text "848.702.3698" ] ]
                 ]
-            , div []
-                [ num "2"
-                , span [] [ text "We come and pickup yur packages*" ]
+            , div [ class [ BrzeCss.NumWrapper ] ]
+                [ num "2 "
+                , span [] [ text "We come and pickup your packages*" ]
                 ]
-            , div []
-                [ num "3"
+            , div [ class [ BrzeCss.NumWrapper ] ]
+                [ num "3 "
                 , span [] [ text "We text you a confirmation that inclides an image and tracking number after delivery" ]
                 ]
+            , p [ class [ BrzeCss.Currently ] ] [ text "*Currently in Summit, NJ Only" ]
             ]
         ]
 
@@ -79,8 +73,8 @@ view model =
             ]
         , p [ class [ BrzeCss.Intro ] ]
             [ p [ class [ BrzeCss.Title ] ]
-                [ span [] [ text "Introducing Brze. " ]
-                , span [ class [ BrzeCss.ReturnsMadeEasy ] ] [ text "Returns Made Easy!" ]
+                [ span [ class [ BrzeCss.Introducing ] ] [ text "Introducing Brze. " ]
+                , span [] [ text "Returns Made Easy!" ]
                 ]
             , p [ class [ BrzeCss.Finally ] ]
                 [ text "Finally, an affordable service that will pick up your package/s from your home and drop them off at "
