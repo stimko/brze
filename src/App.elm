@@ -4,6 +4,7 @@ import BrzeCss
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.CssHelpers exposing (withNamespace)
+import Json.Decode
 import SignUp.SignUp exposing (..)
 
 
@@ -17,6 +18,12 @@ type Msg
 
 type alias Model =
     { signUp : SignUpModel }
+
+
+-- decodeModel : Json.Decode.Decoder Model
+-- decodeModel =
+--     Json.Decode.map Model
+--         (Json.Decode.dict "signUp")
 
 
 init : ( Model, Cmd Msg )
@@ -36,7 +43,6 @@ num n =
     span [ class [ BrzeCss.Num ] ] [ text n ]
 
 
-oneTwoThree : Html Msg
 oneTwoThree =
     p [ class [ BrzeCss.Easy ] ]
         [ p [ class [ BrzeCss.VerticalBrze ] ] [ text "Brze" ]
@@ -82,4 +88,5 @@ view model =
                 ]
             ]
         , oneTwoThree
+        , Html.map SignUp (signUpView model.signUp)
         ]
