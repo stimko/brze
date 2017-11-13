@@ -4,7 +4,8 @@ import BrzeCss
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.CssHelpers exposing (withNamespace)
-import Json.Decode
+import Json.Decode exposing (Decoder, string)
+import Json.Decode.Pipeline exposing (decode, hardcoded, optional, required)
 import SignUp.SignUp exposing (..)
 
 
@@ -20,10 +21,20 @@ type alias Model =
     { signUp : SignUpModel }
 
 
--- decodeModel : Json.Decode.Decoder Model
--- decodeModel =
---     Json.Decode.map Model
---         (Json.Decode.dict "signUp")
+userDecoder : Decoder SignUpModel
+userDecoder =
+    decode SignUpModel
+        |> Json.Decode.Pipeline.required "email" string
+        |> Json.Decode.Pipeline.required "phoneNumber" string
+        |> Json.Decode.Pipeline.required "name" string
+        |> Json.Decode.Pipeline.required "address1" string
+        |> Json.Decode.Pipeline.optional "address2" string ""
+        |> Json.Decode.Pipeline.required "creditCard" string
+
+
+decodeModel : Decoder Model
+decodeModel =
+    decode Model |> Json.Decode.Pipeline.required "signUp" userDecoder
 
 
 init : ( Model, Cmd Msg )
@@ -42,7 +53,7 @@ num : String -> Html Msg
 num n =
     span [ class [ BrzeCss.Num ] ] [ text n ]
 
-
+oneTwoThree : Html Msg
 oneTwoThree =
     p [ class [ BrzeCss.Easy ] ]
         [ p [ class [ BrzeCss.VerticalBrze ] ] [ text "Brze" ]

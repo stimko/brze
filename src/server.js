@@ -6,7 +6,15 @@ const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
 console.log(process.env.RAZZLE_ASSETS_MANIFEST);
 
-const model = { counter: 5 };
+const model = { signUp: { 
+    name : ""
+  , phoneNumber : ""
+  , number : ""
+  , address1 : ""
+  , address2 : ""
+  , email : ""
+  , creditCard : ""
+  }};
 const options = { model : model, decoder: "App.decodeModel" };
 
 const server = express();
