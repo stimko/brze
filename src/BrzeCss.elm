@@ -62,8 +62,8 @@ css =
         , class Num
             [ color brzeGreen
             , fontWeight (int 500)
-            , fontSize (em 1.3)
-            , paddingRight (em 0.5)
+            , fontSize (em 1.4)
+            , paddingRight (em 0.2)
             ]
         , class MakingPickupEasy
             [ fontWeight (int 200) ]

@@ -3,7 +3,7 @@ import express from 'express';
 require('./Main');
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
-
+const bodyParser = require('body-parser');
 console.log(process.env.RAZZLE_ASSETS_MANIFEST);
 
 const model = { signUp: { 
@@ -21,6 +21,11 @@ const server = express();
 server
 .disable('x-powered-by')
 .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
+.use(bodyParser.urlencoded({ extended: true }))
+.use(bodyParser.json())
+.post('/api/signup', (req, res) => {
+  console.log(req.body);
+})
 .get('/*', (req, res) => {
   elmStaticHtml(process.cwd(), "App.view", options)
   .then((generatedHtml) => {
@@ -52,7 +57,6 @@ server
     console.log(error);
     res.status(500).send(`<h1>An error ocurred on server, please try later, or contact support</h1>`);
   });
-
 });
 
 export default server;

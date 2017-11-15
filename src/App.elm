@@ -4,7 +4,7 @@ import BrzeCss
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.CssHelpers exposing (withNamespace)
-import Json.Decode exposing (Decoder, string)
+import Json.Decode exposing (Decoder, string, bool)
 import Json.Decode.Pipeline exposing (decode, hardcoded, optional, required)
 import SignUp.SignUp exposing (..)
 
@@ -29,7 +29,10 @@ userDecoder =
         |> Json.Decode.Pipeline.required "name" string
         |> Json.Decode.Pipeline.required "address1" string
         |> Json.Decode.Pipeline.optional "address2" string ""
-        |> Json.Decode.Pipeline.required "creditCard" string
+        |> Json.Decode.Pipeline.required "password1" string
+        |> Json.Decode.Pipeline.required "password2" string
+        |> Json.Decode.Pipeline.required "signedUp" bool
+        |> Json.Decode.Pipeline.required "signedUpErr" string
 
 
 decodeModel : Decoder Model
@@ -46,7 +49,9 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update message state =
     case message of
         SignUp signUpMessage ->
-            ( { state | signUp = signUpUpdate signUpMessage state.signUp }, Cmd.none )
+            let (signUpState , cmd ) = signUpUpdate signUpMessage state.signUp
+            in
+            ( { state | signUp = signUpState }, Cmd.map SignUp cmd )
 
 
 num : String -> Html Msg
