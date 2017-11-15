@@ -24,7 +24,7 @@ server
 .use(bodyParser.urlencoded({ extended: true }))
 .use(bodyParser.json())
 .post('/api/signup', (req, res) => {
-  console.log(req.body);
+  console.log("handle shit here");
 })
 .get('/*', (req, res) => {
   elmStaticHtml(process.cwd(), "App.view", options)
