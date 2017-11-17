@@ -12,7 +12,8 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "elm-static-html-lib": "^0.0.8-alpha.2",
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "elm": "^0.18.0"
   },
   "devDependencies": {
     "compression-webpack-plugin": "^1.0.1",
@@ -28,7 +29,6 @@
     "autoprefixer": "^6.3.6",
     "bootstrap": "4.0.0-alpha.6",
     "copy-webpack-plugin": "^4.0.1",
-    "elm": "^0.18.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "font-awesome": "^4.7.0",
     "html-webpack-plugin": "^2.28.0",
