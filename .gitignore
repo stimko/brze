@@ -4,17 +4,14 @@ npm-debug.log*
 .DS_Store
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
-build/Release
 
 coverage
 node_modules
-build
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 .elm-static-html
-build
 
 # Optional npm cache directory
 .npm
