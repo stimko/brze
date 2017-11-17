@@ -19,17 +19,20 @@ type alias SignUpModel =
     , phoneNumber : String
     , address1 : String
     , address2 : String
+    , city : String
+    , zip : String
     , email : String
     , password1 : String
     , password2 : String
     , signedUp : Bool
+    , submitDisabled : Bool
     , signedUpErr : String
     }
 
 
 signUpModel : SignUpModel
 signUpModel =
-    SignUpModel "" "" "" "" "" "" "" False ""
+    SignUpModel "" "" "" "" "" "" "" "" "" False False ""
 
 
 toJson : SignUpModel -> Value
@@ -39,6 +42,8 @@ toJson m =
         , ( "phoneNumber", Json.Encode.string m.phoneNumber )
         , ( "address1", Json.Encode.string m.address1 )
         , ( "address2", Json.Encode.string m.address2 )
+        , ( "city", Json.Encode.string m.city )
+        , ( "zip", Json.Encode.string m.zip )
         , ( "email", Json.Encode.string m.email )
         , ( "password1", Json.Encode.string m.password1 )
         , ( "password2", Json.Encode.string m.password2 )
@@ -50,7 +55,9 @@ type SignUpMsg
     | PhoneNumber String
     | Email String
     | Address1 String
+    | Zip String
     | Address2 String
+    | City String
     | Password1 String
     | Password2 String
     | SignUpRequest (Result Http.Error String)
@@ -81,16 +88,20 @@ signUpUpdate msg signUpModel =
         Password2 a2 ->
             ( { signUpModel | address1 = a2 }, Cmd.none )
 
+        Zip z ->
+            ( { signUpModel | zip = z }, Cmd.none )
+
+        City c ->
+            ( { signUpModel | city = c }, Cmd.none )
+
         SubmitSignUp ->
             ( signUpModel, signUpRequest signUpModel )
 
         SignUpRequest (Ok newUrl) ->
-            Debug.log "who"
-                ( { signUpModel | signedUp = True }, Cmd.none )
+            ( { signUpModel | signedUp = True }, Cmd.none )
 
         SignUpRequest (Err _) ->
-            Debug.log "what"
-                ( { signUpModel | signedUpErr = "test" }, Cmd.none )
+            ( { signUpModel | signedUpErr = "test" }, Cmd.none )
 
 
 signUpRequest : SignUpModel -> Cmd SignUpMsg
@@ -119,21 +130,59 @@ signUpInput input =
         [ input ]
 
 
-signUpView : SignUpModel -> Html SignUpMsg
-signUpView signUpModel =
+signUpForm : SignUpModel -> Html SignUpMsg
+signUpForm signUpModel =
     List.map signUpInput
-        [ input [ type_ "text", placeholder "Name", onInput Name ] []
-        , input [ type_ "text", placeholder "Address1", onInput Address1 ] []
-        , input [ type_ "text", placeholder "Address2", onInput Address2 ] []
-        , input [ type_ "text", placeholder "Password1", onInput Password1 ] []
-        , input [ type_ "text", placeholder "Password2", onInput Password2 ] []
-        , input [ type_ "email", placeholder "Email", onInput Email ] []
-        , input [ type_ "tel", placeholder "Phone Number", onInput PhoneNumber ] []
+        [ div []
+            [ div [] [ text "Name*" ]
+            , input [ type_ "text", onInput Name, class [ SignUp.SignUpCss.Input ] ] []
+            ]
+        , div []
+            [ div [] [ text "Street Address*" ]
+            , input [ type_ "text", onInput Address1, class [ SignUp.SignUpCss.Input ] ] []
+            ]
+        , div []
+            [ div [] [ text "Apt., Floor, Unit etc. (Optional)" ]
+            , input [ type_ "text", onInput Address2, class [ SignUp.SignUpCss.Input ] ] []
+            ]
+        , div []
+            [ div [] [ text "Zip Code*" ]
+            , input [ type_ "text", onInput Zip, class [ SignUp.SignUpCss.Input ] ] []
+            ]
+        , div []
+            [ div [] [ text "City*" ]
+            , input [ type_ "text", onInput City, class [ SignUp.SignUpCss.Input ] ] []
+            ]
+        , div []
+            [ div [] [ text "Password*" ]
+            , input [ type_ "text", onInput Password1, class [ SignUp.SignUpCss.Input ] ] []
+            ]
+        , div []
+            [ div [] [ text "Password Again*" ]
+            , input [ type_ "text", onInput Password2, class [ SignUp.SignUpCss.Input ] ] []
+            ]
+        , div []
+            [ div [] [ text "Email*" ]
+            , input [ type_ "email", onInput Email, class [ SignUp.SignUpCss.Input ] ] []
+            ]
+        , div []
+            [ div [] [ text "Phone Number*" ]
+            , input [ type_ "tel", onInput PhoneNumber, class [ SignUp.SignUpCss.Input ] ] []
+            ]
         ]
-        ++ [ button [ onClick SubmitSignUp ] [ text "Submit" ]
+        ++ [ button [ onClick SubmitSignUp, class [ SignUp.SignUpCss.SignUpButton ], disabled signUpModel.submitDisabled ] [ text "Submit" ]
            , viewValidation signUpModel
            ]
         |> div []
+
+
+signUpView : SignUpModel -> Html SignUpMsg
+signUpView signUpModel =
+    div [ class [ SignUp.SignUpCss.SignUp ] ]
+        [ div [ class [ SignUp.SignUpCss.SignUpTitle ] ] [ text "Sign Up For Brze!" ]
+        , div [] [ text "Required*" ]
+        , signUpForm signUpModel
+        ]
 
 
 viewValidation : SignUpModel -> Html msg
@@ -141,7 +190,7 @@ viewValidation model =
     let
         ( color, message ) =
             if model.password1 == model.password2 then
-                ( "green", "OK" )
+                ( "green", "" )
             else
                 ( "red", "Passwords do not match!" )
     in

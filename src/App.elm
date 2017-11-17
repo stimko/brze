@@ -27,11 +27,14 @@ userDecoder =
         |> Json.Decode.Pipeline.required "email" string
         |> Json.Decode.Pipeline.required "phoneNumber" string
         |> Json.Decode.Pipeline.required "name" string
+        |> Json.Decode.Pipeline.required "zip" string
+        |> Json.Decode.Pipeline.required "city" string
         |> Json.Decode.Pipeline.required "address1" string
         |> Json.Decode.Pipeline.optional "address2" string ""
         |> Json.Decode.Pipeline.required "password1" string
         |> Json.Decode.Pipeline.required "password2" string
         |> Json.Decode.Pipeline.required "signedUp" bool
+        |> Json.Decode.Pipeline.required "submitDisabled" bool
         |> Json.Decode.Pipeline.required "signedUpErr" string
 
 
