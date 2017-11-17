@@ -14,6 +14,11 @@ const model = { signUp: {
   , address2 : ""
   , email : ""
   , creditCard : ""
+  , city: ""
+  , zip: ""
+  , signedUpErr: ""
+  , signedUp : false
+  , submitDisabled : false
   }};
 const options = { model : model, decoder: "App.decodeModel" };
 
