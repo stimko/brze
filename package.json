@@ -14,9 +14,6 @@
     "elm-static-html-lib": "^0.0.8-alpha.2",
     "express": "^4.15.4",
     "elm": "^0.18.0",
-    "razzle": "0.8.4"
-  },
-  "devDependencies": {
     "compression-webpack-plugin": "^1.0.1",
     "css-loader": "^0.28.7",
     "elm-css-webpack-loader": "^3.3.0",
@@ -40,5 +37,7 @@
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1",
     "webpack-merge": "^3.0.0"
+  },
+  "devDependencies": {
   }
 }
