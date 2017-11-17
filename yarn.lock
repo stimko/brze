@@ -2131,7 +2131,7 @@ elm-webpack-loader@^4.3.1:
     node-elm-compiler "^4.2.1"
     yargs "^6.5.0"
 
-elm@0.18.0, elm@^0.18.0:
+elm@^0.18.0:
   version "0.18.0"
   resolved "https://registry.yarnpkg.com/elm/-/elm-0.18.0.tgz#919b8309cd939dfe2ff9d252d961b6c89509b970"
   dependencies:
@@ -5486,7 +5486,7 @@ razzle-dev-utils@^0.8.4:
     sockjs-client "1.1.4"
     strip-ansi "4.0.0"
 
-razzle@^0.8.4:
+razzle@0.8.4:
   version "0.8.4"
   resolved "https://registry.yarnpkg.com/razzle/-/razzle-0.8.4.tgz#db6e8ecd2e7a039841b98b04318ea018986a6fc7"
   dependencies:
@@ -5996,11 +5996,7 @@ selfsigned@^1.9.1:
   dependencies:
     node-forge "0.6.33"
 
-"semver@2 || 3 || 4 || 5", semver@^5.3.0:
-  version "5.4.1"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-5.4.1.tgz#e059c09d8571f0540823733433505d3a2f00b18e"
-
-semver@~5.3.0:
+"semver@2 || 3 || 4 || 5", semver@^5.3.0, semver@~5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.3.0.tgz#9b2ce5d3de02d17c6012ad326aa6b4d0cf54f94f"
 
