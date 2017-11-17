@@ -39,7 +39,6 @@ css =
             , color white
             , fontSize (em 1.3)
             , border (em 0)
-            , borderRadius (em 0.5)
             , marginTop (em 1)
             ]
         ]
