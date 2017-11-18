@@ -7,6 +7,7 @@ let currentApp = app;
 
 
 console.log(process.env.PORT);
+
 server.listen(process.env.PORT || 3000);
 
 if (module.hot) {
