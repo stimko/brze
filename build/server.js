@@ -16729,7 +16729,7 @@ var server = __WEBPACK_IMPORTED_MODULE_1_http___default.a.createServer(__WEBPACK
 
 var currentApp = __WEBPACK_IMPORTED_MODULE_0__server__["a" /* default */];
 
-server.listen("1234");
+server.listen("4444" || 3000);
 
 if (false) {
   console.log('✅  Server-side HMR Enabled!');
