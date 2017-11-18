@@ -9,16 +9,16 @@ console.log(process.env.RAZZLE_ASSETS_MANIFEST);
 const model = { signUp: { 
     name : ""
   , phoneNumber : ""
-  , number : ""
   , address1 : ""
   , address2 : ""
   , email : ""
-  , creditCard : ""
   , city: ""
   , zip: ""
-  , signedUpErr: ""
   , signedUp : false
   , submitDisabled : false
+  , signedUpErr : ""
+  , password1: ""
+  , password2: ""
   }};
 const options = { model : model, decoder: "App.decodeModel" };
 
