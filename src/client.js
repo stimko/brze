@@ -1,8 +1,8 @@
-require('./Stylesheets');
-var Elm = require('./Main');
+import React from 'react';
+import { hydrate } from 'react-dom';
+import App from './App';
 
-// We need embed the Elm app to the div, if we call fullscreen we will have duplicated html
-Elm.Main.embed( document.getElementById( "root" ) );
+hydrate(<App />, document.getElementById('root'));
 
 if (module.hot) {
   module.hot.accept();
