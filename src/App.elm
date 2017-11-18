@@ -89,7 +89,7 @@ view model =
     div []
         [ img
             [ class [ BrzeCss.BrzeLogo ]
-            , src "./images/brze.png"
+            , src "/images/brze.png"
             ]
             []
         , h1 []
