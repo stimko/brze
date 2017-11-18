@@ -16729,9 +16729,9 @@ var server = __WEBPACK_IMPORTED_MODULE_1_http___default.a.createServer(__WEBPACK
 
 var currentApp = __WEBPACK_IMPORTED_MODULE_0__server__["a" /* default */];
 
-console.log(3000);
+console.log(proccess.env.PORT);
 
-server.listen(3000 || 3000);
+server.listen(proccess.env.PORT);
 
 if (false) {
   console.log('✅  Server-side HMR Enabled!');
@@ -16783,7 +16783,9 @@ var server = __WEBPACK_IMPORTED_MODULE_1_express___default()();
 server.disable('x-powered-by').use(__WEBPACK_IMPORTED_MODULE_1_express___default.a.static("/Users/stephentimko/Documents/projects/brze/build/public")).use(bodyParser.urlencoded({ extended: true })).use(bodyParser.json()).post('/api/signup', function (req, res) {
   console.log("handle shit here");
 }).get('/*', function (req, res) {
+	console.log("get", __WEBPACK_IMPORTED_MODULE_0_elm_static_html_lib___default);
   __WEBPACK_IMPORTED_MODULE_0_elm_static_html_lib___default()(process.cwd(), "App.view", options).then(function (generatedHtml) {
+		console.log("compiled");
     var markup = generatedHtml;
     res.send('<!doctype html>\n      <html lang="">\n        <head>\n            <meta httpEquiv="X-UA-Compatible" content="IE=edge" />\n            <meta charSet=\'utf-8\' />\n            <title>Welcome to Razzle</title>\n            <meta name="viewport" content="width=device-width, initial-scale=1">\n            <link rel="stylesheet" href="./reset.css">\n            <link rel="stylesheet" href="./fonts/fonts.css">\n            ' + (assets.client.css ? '<link rel="stylesheet" href="' + assets.client.css + '">' : '') + '          \n            \n        </head>\n        <body>\n            <div id="root">' + markup + '</div>\n        </body>\n        ' + ( true ? '<script src="' + assets.client.js + '"></script>' : '<script src="' + assets.client.js + '"></script>') + '\n      </html>');
   }).catch(function (error) {
