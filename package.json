@@ -8,7 +8,7 @@
     "build": "razzle build",
     "test": "razzle test --env=jsdom",
 		"start:prod": "set NODE_ENV=production&&node build/server.js",
-		"build:heroku": "razzle build&&set NODE_ENV=production&&node build/server.js"
+		"build:heroku": "set NODE_ENV=production&&set PORT=$PORT&&node build/server.js"
   },
   "dependencies": {
     "body-parser": "^1.18.2",

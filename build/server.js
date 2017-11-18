@@ -16729,6 +16729,7 @@ var server = __WEBPACK_IMPORTED_MODULE_1_http___default.a.createServer(__WEBPACK
 
 var currentApp = __WEBPACK_IMPORTED_MODULE_0__server__["a" /* default */];
 
+console.log(process.env.PORT);
 server.listen(process.env.PORT);
 
 if (false) {
