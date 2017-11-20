@@ -1,0 +1,34 @@
+.signUp {
+  border-top: .05em solid #DADADA;
+  padding: 2em;
+}
+
+.signUpTitle {
+  font-size: 2em;
+}
+
+.signUpInputWrapper {
+  padding-top: 1em;
+  font-size: 1.5em;
+}
+
+.signUpInput {
+  padding: 0.2em;
+  font-size: 1.5em;
+}
+
+.err {
+  font-size: 2em;
+}
+
+.signUpButton {
+  width: 110px;
+  height: 50px;
+  background-color: #000000;
+  font-family: inherit;
+  color: #FFFFFF;
+  font-size: 1.3em;
+  border: 0em;
+  margin-top: 1em;
+  cursor: pointer;
+}
