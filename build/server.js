@@ -68,7 +68,7 @@
 /***/ "./build/assets.json":
 /***/ (function(module, exports) {
 
-module.exports = {"client":{"js":"/static/js/bundle.dbb77ea5.js","css":"/static/css/bundle.117ee951.css"}}
+module.exports = {"client":{"js":"/static/js/bundle.c7e4d891.js","css":"/static/css/bundle.117ee951.css"}}
 
 /***/ }),
 
@@ -974,7 +974,7 @@ if (false) {
   console.info('✅  Server-side HMR Enabled!');
 }
 
-var port = process.env.PORT;
+var port = 3000 || 3000;
 
 /* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_0_express___default()().use(function (req, res) {
   return __WEBPACK_IMPORTED_MODULE_1__server__["a" /* default */].handle(req, res);
