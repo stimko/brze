@@ -5,7 +5,6 @@ npm-debug.log*
 
 coverage
 node_modules
-public/static
 .env.*.local
 ./src/.env
 .env
