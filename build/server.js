@@ -1007,22 +1007,13 @@ exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__("babel-runtime/regenerator");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator__ = __webpack_require__("babel-runtime/helpers/asyncToGenerator");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__App__ = __webpack_require__("./src/App.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react__ = __webpack_require__("react");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_express__ = __webpack_require__("express");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_express__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_dom_server__ = __webpack_require__("react-dom/server");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_dom_server___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_dom_server__);
-
-
-
-var _this = this;
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__App__ = __webpack_require__("./src/App.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__("react");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_express__ = __webpack_require__("express");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_express__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_dom_server__ = __webpack_require__("react-dom/server");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_dom_server___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_dom_server__);
 
 
 
@@ -1042,28 +1033,11 @@ var TWILIO_NUMBER = "12018066564";
 console.log(Object({"NODE_ENV":"production","PORT":3000,"VERBOSE":false,"HOST":"localhost","RAZZLE_ASSETS_MANIFEST":"/Users/stephentimko/Documents/projects/brze/build/assets.json","BUILD_TARGET":"server","RAZZLE_PUBLIC_DIR":"/Users/stephentimko/Documents/projects/brze/build/public","RAZZLE_TWILIO_ACCOUNT_SID":"AC5f2cc96da38dbfe3013685ca1d957b31","RAZZLE_TWILIO_AUTH_TOKEN":"adaca3c80d074c60fd8e6f0422aee6ec","RAZZLE_TWILIO_NUMBER":"12018066564"}));
 var twilioClient = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
-var startPgClient = function () {
-  var _ref = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            _context.next = 2;
-            return pgClient.connect();
+// const startPgClient = async () => {
+//   await pgClient.connect();
+// }
+// startPgClient();
 
-          case 2:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee, _this);
-  }));
-
-  return function startPgClient() {
-    return _ref.apply(this, arguments);
-  };
-}();
-startPgClient();
 
 var findUserByNumberQuery = function findUserByNumberQuery(num) {
   return {
@@ -1083,8 +1057,8 @@ var sendSms = function sendSms(num, res, msg) {
   });
 };
 
-var server = __WEBPACK_IMPORTED_MODULE_4_express___default()();
-server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default.a.static("/Users/stephentimko/Documents/projects/brze/build/public")).use(bodyParser.urlencoded({ extended: true })).use(bodyParser.json()).post('/api/text', function (req, postRes) {
+var server = __WEBPACK_IMPORTED_MODULE_2_express___default()();
+server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_2_express___default.a.static("/Users/stephentimko/Documents/projects/brze/build/public")).use(bodyParser.urlencoded({ extended: true })).use(bodyParser.json()).post('/api/text', function (req, postRes) {
   pgClient.query(findUserByNumberQuery(req.param('from'))).then(function (res) {
     var message = res.rows.length ? 'Welcome to Brze! Please check back soon for beta!' : 'Welcome to Brze! Please register an account at brze.io and check back for beta!';
     sendSms(req.param('from'), postRes, message);
@@ -1110,7 +1084,7 @@ server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default
     return console.error("Sign Up Failure", e);
   });
 }).get("/*", function (req, res) {
-  var markup = Object(__WEBPACK_IMPORTED_MODULE_5_react_dom_server__["renderToString"])(__WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__App__["a" /* default */], null));
+  var markup = Object(__WEBPACK_IMPORTED_MODULE_3_react_dom_server__["renderToString"])(__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_0__App__["a" /* default */], null));
   res.send("<!doctype html>\n    <html lang=\"\">\n    <head>\n        <meta httpEquiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n        <meta charSet='utf-8' />\n        <title>Welcome to Razz a mataz</title>\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n        " + (assets.client.css ? "<link rel=\"stylesheet\" href=\"" + assets.client.css + "\">" : "") + "\n         " + ( true ? "<script src=\"" + assets.client.js + "\" defer></script>" : "<script src=\"" + assets.client.js + "\" defer crossorigin></script>") + "\n    </head>\n    <body>\n        <div id=\"root\">" + markup + "</div>\n    </body>\n</html>");
 });
 
@@ -1140,13 +1114,6 @@ module.exports = require("babel-runtime/core-js/object/get-prototype-of");
 
 /***/ }),
 
-/***/ "babel-runtime/helpers/asyncToGenerator":
-/***/ (function(module, exports) {
-
-module.exports = require("babel-runtime/helpers/asyncToGenerator");
-
-/***/ }),
-
 /***/ "babel-runtime/helpers/classCallCheck":
 /***/ (function(module, exports) {
 
@@ -1172,13 +1139,6 @@ module.exports = require("babel-runtime/helpers/inherits");
 /***/ (function(module, exports) {
 
 module.exports = require("babel-runtime/helpers/possibleConstructorReturn");
-
-/***/ }),
-
-/***/ "babel-runtime/regenerator":
-/***/ (function(module, exports) {
-
-module.exports = require("babel-runtime/regenerator");
 
 /***/ }),
 
