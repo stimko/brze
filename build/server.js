@@ -974,7 +974,7 @@ if (false) {
   console.info('✅  Server-side HMR Enabled!');
 }
 
-var port = process.env.PORT;
+var port = process.env.PORT || 3000;
 
 /* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_0_express___default()().use(function (req, res) {
   return __WEBPACK_IMPORTED_MODULE_1__server__["a" /* default */].handle(req, res);
