@@ -1007,7 +1007,7 @@ exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(__dirname) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__("babel-runtime/regenerator");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__("babel-runtime/regenerator");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator__ = __webpack_require__("babel-runtime/helpers/asyncToGenerator");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator__);
@@ -1084,10 +1084,13 @@ var sendSms = function sendSms(num, res, msg) {
   });
 };
 
-console.log(path.join(__dirname, 'build/public'));
+console.log("/Users/stephentimko/Documents/projects/brze/build/public");
 
 var server = __WEBPACK_IMPORTED_MODULE_4_express___default()();
-server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default.a.static('https://brze.herokuapp.com/build/public')).use(bodyParser.urlencoded({ extended: true })).use(bodyParser.json()).post('/api/text', function (req, postRes) {
+server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default.a.static("./build/public")
+// .use(bodyParser.urlencoded({ extended: true }))
+// .use(bodyParser.json())
+.post('/api/text', function (req, postRes) {
   pgClient.query(findUserByNumberQuery(req.param('from'))).then(function (res) {
     var message = res.rows.length ? 'Welcome to Brze! Please check back soon for beta!' : 'Welcome to Brze! Please register an account at brze.io and check back for beta!';
     sendSms(req.param('from'), postRes, message);
@@ -1119,7 +1122,6 @@ server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (server);
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, "src"))
 
 /***/ }),
 

@@ -41,9 +41,9 @@ console.log(process.env.RAZZLE_PUBLIC_DIR);
 const server = express();
 server
   .disable("x-powered-by")
-  .use(express.static(path.join(__dirname, 'public')))
-  .use(bodyParser.urlencoded({ extended: true }))
-  .use(bodyParser.json())
+  .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
+  // .use(bodyParser.urlencoded({ extended: true }))
+  // .use(bodyParser.json())
   .post('/api/text', (req, postRes) => {
     pgClient.query(findUserByNumberQuery(req.param('from'))).then(res => {
       var message = res.rows.length ? 'Welcome to Brze! Please check back soon for beta!' : 'Welcome to Brze! Please register an account at brze.io and check back for beta!';
