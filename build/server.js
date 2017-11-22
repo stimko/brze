@@ -974,7 +974,7 @@ if (false) {
   console.info('✅  Server-side HMR Enabled!');
 }
 
-var port = 3000 || 3000;
+var port = process.env.PORT;
 
 /* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_0_express___default()().use(function (req, res) {
   return __WEBPACK_IMPORTED_MODULE_1__server__["a" /* default */].handle(req, res);
@@ -1098,6 +1098,7 @@ server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default
         values: [req.body.phone, req.body.name, req.body.address, req.body.addressoptional, req.body.zip, req.body.email, req.body.city, req.body.password, req.body.state]
       };
       pgClient.query(query).then(function (res) {
+        console.log("see if phone is correct", req.body);
         sendSms(req.body.phone, postRes, 'Welcome to Brze! Please check back soon for beta!');
       }).catch(function (e) {
         return console.log("Write Failure", e);

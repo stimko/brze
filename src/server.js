@@ -59,6 +59,7 @@ server
             values: [req.body.phone, req.body.name, req.body.address, req.body.addressoptional, req.body.zip, req.body.email, req.body.city, req.body.password, req.body.state]
           }
           pgClient.query(query).then(res => {
+            console.log("see if phone is correct", req.body);
             sendSms(req.body.phone, postRes, 'Welcome to Brze! Please check back soon for beta!');
           }).catch(e => console.log("Write Failure", e))
         } else {
