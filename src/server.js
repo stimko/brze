@@ -4,6 +4,7 @@ import express from "express";
 import { renderToString } from "react-dom/server";
 
 const bodyParser = require('body-parser');
+const path = require('path');
 const { Client } = require('pg');
 const twilio = require('twilio');
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
@@ -40,7 +41,7 @@ console.log(process.env.RAZZLE_PUBLIC_DIR);
 const server = express();
 server
   .disable("x-powered-by")
-  .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
+  .use(express.static(path.join(__dirname, 'public')))
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
   .post('/api/text', (req, postRes) => {
