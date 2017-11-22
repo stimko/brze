@@ -1084,7 +1084,7 @@ var sendSms = function sendSms(num, res, msg) {
   });
 };
 
-console.log("/Users/stephentimko/Documents/projects/brze/build/public");
+console.log(path.join(__dirname, 'build/public'));
 
 var server = __WEBPACK_IMPORTED_MODULE_4_express___default()();
 server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default.a.static(path.join(__dirname, 'build/public'))).use(bodyParser.urlencoded({ extended: true })).use(bodyParser.json()).post('/api/text', function (req, postRes) {
