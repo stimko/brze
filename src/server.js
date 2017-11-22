@@ -5,13 +5,37 @@ import { renderToString } from "react-dom/server";
 
 const bodyParser = require('body-parser');
 const { Client } = require('pg');
+const twilio = require('twilio');
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
-const client = new Client({ssl: true});
+const pgClient = new Client({ssl: true});
+const TWILIO_ACCOUNT_SID = process.env.RAZZLE_TWILIO_ACCOUNT_SID;
+const TWILIO_AUTH_TOKEN = process.env.RAZZLE_TWILIO_AUTH_TOKEN;
+const TWILIO_NUMBER = process.env.RAZZLE_TWILIO_NUMBER;
+console.log(process.env);
+const twilioClient = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
-const startClient = async () => {
-  await client.connect();
+const startPgClient = async () => {
+  await pgClient.connect();
 }
-startClient();
+startPgClient();
+
+
+
+const findUserByNumberQuery = (num) => ({
+  name: 'fetch-breezer',
+  text: 'SELECT * FROM breezers WHERE phone = $1',
+  values: [num]
+});
+
+const sendSms = (num, res, msg) => {
+  twilioClient.messages.create({
+    to: num,
+    from: TWILIO_NUMBER,
+    body: msg
+  }, function(err, data) {
+    res.send('Message is inbound!');
+  });
+}
 
 const server = express();
 server
@@ -19,29 +43,29 @@ server
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
+  .post('/api/text', (req, postRes) => {
+    pgClient.query(findUserByNumberQuery(req.param('from'))).then(res => {
+      var message = res.rows.length ? 'Welcome to Brze! Please check back soon for beta!' : 'Welcome to Brze! Please register an account at brze.io and check back for beta!';
+      sendSms(req.param('from'), postRes,  message);
+    });
+  })
   .post('/api/signup', (req, postRes) => {
-    console.log(req.body);
-    const query = {
-      name: 'fetch-breezer',
-      text: 'SELECT * FROM breezers WHERE phone = $1',
-      values: [req.body.phone]
-    }
-
-    client.query(query)
+    pgClient.query(findUserByNumberQuery(req.body.phone))
       .then(res => {
-        console.log("rows", res.rows);
         if(!res.rows.length){
           const query = {
             name: 'write-breezer',
             text: 'INSERT INTO breezers (phone, name, address, addressoptional, zip, email, city, password, state) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
             values: [req.body.phone, req.body.name, req.body.address, req.body.addressoptional, req.body.zip, req.body.email, req.body.city, req.body.password, req.body.state]
           }
-          client.query(query).then(res => {
-            postRes.send(res);
+          pgClient.query(query).then(res => {
+            sendSms(req.body.phone, postRes, 'Welcome to Brze! Please check back soon for beta!');
           }).catch(e => console.log("Write Failure", e))
+        } else {
+          postRes.send("This number is already signed up!");
         }
       })
-      .catch(e => console.error("Get Failure", e));
+      .catch(e => console.error("Sign Up Failure", e));
   })
   .get("/*", (req, res) => {
     const markup = renderToString(<App />);

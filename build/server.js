@@ -68,7 +68,7 @@
 /***/ "./build/assets.json":
 /***/ (function(module, exports) {
 
-module.exports = {"client":{"js":"/static/js/bundle.72fd7466.js","css":"/static/css/bundle.117ee951.css"}}
+module.exports = {"client":{"js":"/static/js/bundle.dbb77ea5.js","css":"/static/css/bundle.117ee951.css"}}
 
 /***/ }),
 
@@ -489,8 +489,6 @@ var SignUpForm = function (_React$Component) {
       var _this2 = this;
 
       event.preventDefault();
-
-      debugger;
 
       if (this.state.password !== this.state.password2) {
         this.setState({ message: "Passwords must match!" });
@@ -1035,17 +1033,23 @@ var bodyParser = __webpack_require__("body-parser");
 var _require = __webpack_require__("pg"),
     Client = _require.Client;
 
+var twilio = __webpack_require__("twilio");
 var assets = __webpack_require__("./build/assets.json");
-var client = new Client({ ssl: true });
+var pgClient = new Client({ ssl: true });
+var TWILIO_ACCOUNT_SID = "AC5f2cc96da38dbfe3013685ca1d957b31";
+var TWILIO_AUTH_TOKEN = "adaca3c80d074c60fd8e6f0422aee6ec";
+var TWILIO_NUMBER = "12018066564";
+console.log(Object({"NODE_ENV":"production","PORT":3000,"VERBOSE":false,"HOST":"localhost","RAZZLE_ASSETS_MANIFEST":"/Users/stephentimko/Documents/projects/brze/build/assets.json","BUILD_TARGET":"server","RAZZLE_PUBLIC_DIR":"/Users/stephentimko/Documents/projects/brze/build/public","RAZZLE_TWILIO_ACCOUNT_SID":"AC5f2cc96da38dbfe3013685ca1d957b31","RAZZLE_TWILIO_AUTH_TOKEN":"adaca3c80d074c60fd8e6f0422aee6ec","RAZZLE_TWILIO_NUMBER":"12018066564"}));
+var twilioClient = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
-var startClient = function () {
+var startPgClient = function () {
   var _ref = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
     return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return client.connect();
+            return pgClient.connect();
 
           case 2:
           case "end":
@@ -1055,37 +1059,54 @@ var startClient = function () {
     }, _callee, _this);
   }));
 
-  return function startClient() {
+  return function startPgClient() {
     return _ref.apply(this, arguments);
   };
 }();
-startClient();
+startPgClient();
 
-var server = __WEBPACK_IMPORTED_MODULE_4_express___default()();
-server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default.a.static("/Users/stephentimko/Documents/projects/brze/build/public")).use(bodyParser.urlencoded({ extended: true })).use(bodyParser.json()).post('/api/signup', function (req, postRes) {
-  console.log(req.body);
-  var query = {
+var findUserByNumberQuery = function findUserByNumberQuery(num) {
+  return {
     name: 'fetch-breezer',
     text: 'SELECT * FROM breezers WHERE phone = $1',
-    values: [req.body.phone]
+    values: [num]
   };
+};
 
-  client.query(query).then(function (res) {
-    console.log("rows", res.rows);
+var sendSms = function sendSms(num, res, msg) {
+  twilioClient.messages.create({
+    to: num,
+    from: TWILIO_NUMBER,
+    body: msg
+  }, function (err, data) {
+    res.send('Message is inbound!');
+  });
+};
+
+var server = __WEBPACK_IMPORTED_MODULE_4_express___default()();
+server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default.a.static("/Users/stephentimko/Documents/projects/brze/build/public")).use(bodyParser.urlencoded({ extended: true })).use(bodyParser.json()).post('/api/text', function (req, postRes) {
+  pgClient.query(findUserByNumberQuery(req.param('from'))).then(function (res) {
+    var message = res.rows.length ? 'Welcome to Brze! Please check back soon for beta!' : 'Welcome to Brze! Please register an account at brze.io and check back for beta!';
+    sendSms(req.param('from'), postRes, message);
+  });
+}).post('/api/signup', function (req, postRes) {
+  pgClient.query(findUserByNumberQuery(req.body.phone)).then(function (res) {
     if (!res.rows.length) {
-      var _query = {
+      var query = {
         name: 'write-breezer',
         text: 'INSERT INTO breezers (phone, name, address, addressoptional, zip, email, city, password, state) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
         values: [req.body.phone, req.body.name, req.body.address, req.body.addressoptional, req.body.zip, req.body.email, req.body.city, req.body.password, req.body.state]
       };
-      client.query(_query).then(function (res) {
-        postRes.send(res);
+      pgClient.query(query).then(function (res) {
+        sendSms(req.body.phone, postRes, 'Welcome to Brze! Please check back soon for beta!');
       }).catch(function (e) {
         return console.log("Write Failure", e);
       });
+    } else {
+      postRes.send("This number is already signed up!");
     }
   }).catch(function (e) {
-    return console.error("Get Failure", e);
+    return console.error("Sign Up Failure", e);
   });
 }).get("/*", function (req, res) {
   var markup = Object(__WEBPACK_IMPORTED_MODULE_5_react_dom_server__["renderToString"])(__WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__App__["a" /* default */], null));
@@ -1192,6 +1213,13 @@ module.exports = require("react");
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
+
+/***/ }),
+
+/***/ "twilio":
+/***/ (function(module, exports) {
+
+module.exports = require("twilio");
 
 /***/ })
 

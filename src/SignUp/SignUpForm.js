@@ -44,8 +44,6 @@ class SignUpForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    debugger;
-
     if (this.state.password !== this.state.password2) {
       this.setState({ message: "Passwords must match!" });
     } else if (this.requiredProps.some(field => !this.state[field])) {
