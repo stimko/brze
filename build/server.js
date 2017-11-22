@@ -1084,10 +1084,8 @@ var sendSms = function sendSms(num, res, msg) {
   });
 };
 
-console.log("/Users/stephentimko/Documents/projects/brze/build/public");
-
 var server = __WEBPACK_IMPORTED_MODULE_4_express___default()();
-server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default.a.static("./build/public")
+server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default.a.static("./build/public"))
 // .use(bodyParser.urlencoded({ extended: true }))
 // .use(bodyParser.json())
 .post('/api/text', function (req, postRes) {
@@ -1117,7 +1115,6 @@ server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default
   });
 }).get("/*", function (req, res) {
   var markup = Object(__WEBPACK_IMPORTED_MODULE_5_react_dom_server__["renderToString"])(__WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__App__["a" /* default */], null));
-  console.log("getting request");
   res.send("<!doctype html>\n    <html lang=\"\">\n    <head>\n        <meta httpEquiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n        <meta charSet='utf-8' />\n        <title>Welcome to Razz a mataz</title>\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n        " + (assets.client.css ? "<link rel=\"stylesheet\" href=\"" + assets.client.css + "\">" : "") + "\n         " + ( true ? "<script src=\"" + assets.client.js + "\" defer></script>" : "<script src=\"" + assets.client.js + "\" defer crossorigin></script>") + "\n    </head>\n    <body>\n        <div id=\"root\">" + markup + "</div>\n    </body>\n</html>");
 });
 

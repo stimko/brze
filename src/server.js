@@ -36,8 +36,6 @@ const sendSms = (num, res, msg) => {
   });
 }
 
-console.log(process.env.RAZZLE_PUBLIC_DIR);
-
 const server = express();
 server
   .disable("x-powered-by")
@@ -71,7 +69,6 @@ server
   })
   .get("/*", (req, res) => {
     const markup = renderToString(<App />);
-    console.log("getting request");
     res.send(
       `<!doctype html>
     <html lang="">
