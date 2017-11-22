@@ -14,10 +14,10 @@ const TWILIO_NUMBER = process.env.RAZZLE_TWILIO_NUMBER;
 console.log(process.env);
 const twilioClient = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
-const startPgClient = async () => {
-  await pgClient.connect();
-}
-startPgClient();
+// const startPgClient = async () => {
+//   await pgClient.connect();
+// }
+// startPgClient();
 
 
 
