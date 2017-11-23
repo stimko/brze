@@ -40,8 +40,8 @@ const server = express();
 server
   .disable("x-powered-by")
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
-  // .use(bodyParser.urlencoded({ extended: true }))
-  // .use(bodyParser.json())
+  .use(bodyParser.urlencoded({ extended: true }))
+  .use(bodyParser.json())
   .post('/api/text', (req, postRes) => {
     pgClient.query(findUserByNumberQuery(req.param('from'))).then(res => {
       var message = res.rows.length ? 'Welcome to Brze! Please check back soon for beta!' : 'Welcome to Brze! Please register an account at brze.io and check back for beta!';
@@ -49,6 +49,17 @@ server
     });
   })
   .post('/api/signup', (req, postRes) => {
+    let num = req.body.phone.replace(/\-|\s|\(|\)/g, '');
+    const isValid10 = !!num.match(/\d{10}/g).length;
+    const isValid11 = !!num.match(/1\d{10}/g).length;
+
+    if(isValid10){
+      num = "1" + num;
+    }
+    
+    if(!isValid10 && !isValid11){
+      postRes.send("Please enter a valid phone number");
+    }
     pgClient.query(findUserByNumberQuery(req.body.phone))
       .then(res => {
         if(!res.rows.length){

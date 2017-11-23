@@ -68,7 +68,7 @@
 /***/ "./build/assets.json":
 /***/ (function(module, exports) {
 
-module.exports = {"client":{"js":"/static/js/bundle.c7e4d891.js","css":"/static/css/bundle.117ee951.css"}}
+module.exports = {"client":{"js":"/static/js/bundle.4b486d5f.js","css":"/static/css/bundle.117ee951.css"}}
 
 /***/ }),
 
@@ -507,12 +507,16 @@ var SignUpForm = function (_React$Component) {
           method: "POST",
           body: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()(this.state)
         }).then(function (resp) {
+          debugger;
           if (resp.ok) {
-            _this2.setState({ submitDisabled: false, message: "You have been signed up!" });
-          } else {
-            _this2.setState({ submitDisabled: false, message: "There was an error signing up!" });
+            return resp.text();
           }
+          throw new Error('Network response was not ok.');
+        }).then(function (blob) {
+          debugger;
+          _this2.setState({ submitDisabled: false, message: blob });
         }).catch(function (err) {
+          console.log(err);
           _this2.setState({ submitDisabled: false, message: "There was an error signing up!" });
         });
       }
@@ -974,7 +978,7 @@ if (false) {
   console.info('✅  Server-side HMR Enabled!');
 }
 
-var port = process.env.PORT || 3000;
+var port = 3000 || 3000;
 
 /* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_0_express___default()().use(function (req, res) {
   return __WEBPACK_IMPORTED_MODULE_1__server__["a" /* default */].handle(req, res);
@@ -1085,15 +1089,23 @@ var sendSms = function sendSms(num, res, msg) {
 };
 
 var server = __WEBPACK_IMPORTED_MODULE_4_express___default()();
-server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default.a.static("./build/public"))
-// .use(bodyParser.urlencoded({ extended: true }))
-// .use(bodyParser.json())
-.post('/api/text', function (req, postRes) {
+server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default.a.static("/Users/stephentimko/Documents/projects/brze/build/public")).use(bodyParser.urlencoded({ extended: true })).use(bodyParser.json()).post('/api/text', function (req, postRes) {
   pgClient.query(findUserByNumberQuery(req.param('from'))).then(function (res) {
     var message = res.rows.length ? 'Welcome to Brze! Please check back soon for beta!' : 'Welcome to Brze! Please register an account at brze.io and check back for beta!';
     sendSms(req.param('from'), postRes, message);
   });
 }).post('/api/signup', function (req, postRes) {
+  var num = req.body.phone.replace(/\-|\s|\(|\)/g, '');
+  var isValid10 = !!num.match(/\d{10}/g).length;
+  var isValid11 = !!num.match(/1\d{10}/g).length;
+
+  if (isValid10) {
+    num = "1" + num;
+  }
+
+  if (!isValid10 && !isValid11) {
+    postRes.send("Please enter a valid phone number");
+  }
   pgClient.query(findUserByNumberQuery(req.body.phone)).then(function (res) {
     if (!res.rows.length) {
       var query = {

@@ -60,13 +60,18 @@ class SignUpForm extends React.Component {
         body: JSON.stringify(this.state)
       })
         .then(resp => {
-          if (resp.ok) {
-            this.setState({ submitDisabled: false, message: "You have been signed up!" });
-          } else {
-            this.setState({submitDisabled: false, message: "There was an error signing up!" });
+          debugger;
+          if(resp.ok) {
+            return resp.text();
           }
+          throw new Error('Network response was not ok.');
+        })
+        .then(blob => {
+          debugger;
+          this.setState({ submitDisabled: false, message: blob });
         })
         .catch(err => {
+          console.log(err);
           this.setState({submitDisabled: false, message: "There was an error signing up!" });
         });
     }
