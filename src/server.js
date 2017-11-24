@@ -4,7 +4,6 @@ import express from "express";
 import { renderToString } from "react-dom/server";
 
 const bodyParser = require('body-parser');
-const path = require('path');
 const { Client } = require('pg');
 const twilio = require('twilio');
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
@@ -26,7 +25,7 @@ const findUserByNumberQuery = (num) => ({
   values: [num]
 });
 
-const sendSms = (num, res, msg, responseMessage) => {
+const sendSms = (num, res, msg, responseMessage="Success!") => {
   twilioClient.messages.create({
     to: num,
     from: TWILIO_NUMBER,
@@ -43,10 +42,10 @@ server
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
   .post('/api/text', (req, postRes) => {
-    console.log(req.body);
-    pgClient.query(findUserByNumberQuery(req.param('from'))).then(res => {
+    const fromNumber = req.body.From.replace('+', '');
+    pgClient.query(findUserByNumberQuery(fromNumber)).then(res => {
       var message = res.rows.length ? 'Welcome to Brze! Please check back soon for beta!' : 'Welcome to Brze! Please register an account at brze.io and check back for beta!';
-      sendSms(req.body.FROM, postRes,  message);
+      sendSms(fromNumber, postRes,  message);
     });
   })
   .post('/api/signup', (req, postRes) => {
