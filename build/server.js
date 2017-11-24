@@ -68,7 +68,7 @@
 /***/ "./build/assets.json":
 /***/ (function(module, exports) {
 
-module.exports = {"client":{"js":"/static/js/bundle.a33facd2.js","css":"/static/css/bundle.a2f2403f.css"}}
+module.exports = {"client":{"js":"/static/js/bundle.3b38c47d.js","css":"/static/css/bundle.a2f2403f.css"}}
 
 /***/ }),
 
@@ -501,7 +501,7 @@ var SignUpForm = function (_React$Component) {
         this.setState({ message: "Please fill in required fields." });
       } else {
         this.setState({ submitDisabled: true });
-
+        console.log(fetch, 'fetchin');
         fetch("/api/signup", {
           headers: {
             Accept: "application/json",
@@ -510,11 +510,15 @@ var SignUpForm = function (_React$Component) {
           method: "POST",
           body: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()(this.state)
         }).then(function (resp) {
+
+          console.log('fetched');
           if (resp.ok) {
             return resp.text();
           }
           throw new Error('Network response was not ok.');
         }).then(function (blob) {
+          console.log('parsed');
+
           debugger;
           _this2.setState({ submitDisabled: false, message: blob });
         }).catch(function (err) {

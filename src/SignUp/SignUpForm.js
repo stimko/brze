@@ -50,7 +50,7 @@ class SignUpForm extends React.Component {
       this.setState({ message: "Please fill in required fields." });
     } else {
       this.setState({ submitDisabled: true });
-
+      console.log(fetch, 'fetchin');
       fetch("/api/signup", {
         headers: {
           Accept: "application/json",
@@ -60,12 +60,16 @@ class SignUpForm extends React.Component {
         body: JSON.stringify(this.state)
       })
         .then(resp => {
+          
+          console.log('fetched');          
           if(resp.ok) {
             return resp.text();
           }
           throw new Error('Network response was not ok.');
         })
         .then(blob => {
+          console.log('parsed');          
+          
           debugger;
           this.setState({ submitDisabled: false, message: blob });
         })
