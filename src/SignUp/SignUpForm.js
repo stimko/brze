@@ -104,7 +104,7 @@ class SignUpForm extends React.Component {
           />
         </div>
         <div className="signUpInputWrapper">
-          <div>City</div>
+          <div>City*</div>
           <input
             className="signUpInput"
             value={this.state.city}
@@ -112,7 +112,7 @@ class SignUpForm extends React.Component {
           />
         </div>
         <div className="signUpInputWrapper">
-          <div>Zip Code</div>
+          <div>Zip Code*</div>
           <input
             className="signUpInput"
             value={this.state.zip}
