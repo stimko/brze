@@ -1,0 +1,219 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}@font-face {
+  font-family: "Gilroy";
+  src: url(/static/media/Gilroy-UltraLight.46dadd56.woff) format("woff");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url(/static/media/Gilroy-Light.d4593ac3.woff) format("woff");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url(/static/media/Gilroy-Regular.3796c599.woff) format("woff");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url(/static/media/Gilroy-Medium.45ca2168.woff) format("woff");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url(/static/media/Gilroy-Bold.06673e71.woff) format("woff");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url(/static/media/Gilroy-Heavy.dd20df36.woff) format("woff");
+  font-weight: 600;
+}
+
+body {
+  font-family: "Gilroy";
+}
+body {
+  padding: 1em;
+}
+
+h1 {
+  font-size: 2em;
+  padding: 0.5em;
+  border-top: 0.05em solid #dadada;
+}
+
+.easy {
+  font-weight: 200;
+  font-size: 1.5em;
+}
+
+.brzeLogo {
+  width: 100%;
+  max-width: 30em;
+}
+
+.makingPickupEasy {
+  font-weight: 200;
+}
+
+.numberLink {
+  color: black; 
+  background-color: transparent; 
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.carriers {
+  color: #00a39c;
+  font-weight: normal;
+  white-space: nowrap;
+}
+
+.intro {
+  background-color: #00a39c;
+  color: white;
+  padding: 1.25em;
+  font-weight: 200;
+}
+
+.verticalBrze {
+  background-color: black;
+  padding: 0.4em 0.2em;
+  font-weight: 500;
+  font-size: 3em;
+  float: right;
+  color: white;
+  text-orientation: sideways;
+  -webkit-writing-mode: vertical-rl;
+      -ms-writing-mode: tb-rl;
+          writing-mode: vertical-rl;
+}
+
+.finally {
+  font-size: 1.5em;
+  font-weight: 200;
+  line-height: 1.3em;
+}
+
+.finally .carriers {
+  font-size: inherit;
+  color: inherit;
+  font-weight: 500;
+}
+
+.title {
+  font-size: 2em;
+  padding-bottom: 0.3em;
+}
+
+.fontWeight500 {
+  font-weight: 500;
+}
+
+.num {
+  color: #00a39c;
+  font-weight: 500;
+  font-size: 1.4em;
+  padding-right: 0.2em;
+}
+
+.numWrapper {
+  padding: 0.3em 0;
+}
+
+.currently {
+  font-weight: 500;
+  font-size: 0.8em;
+}
+
+.steps {
+  padding: 1em;
+  line-height: 1.4em;
+}
+.signUp {
+  border-top: .05em solid #DADADA;
+  padding: 2em;
+}
+
+.signUpTitle {
+  font-size: 2em;
+}
+
+.signUpInputWrapper {
+  padding-top: 1em;
+  font-size: 1.5em;
+}
+
+.signUpInput {
+  padding: 0.2em;
+  font-size: 1em;
+}
+
+.err {
+  font-size: 2em;
+}
+
+.signUpButton {
+  width: 110px;
+  height: 50px;
+  background-color: #000000;
+  font-family: inherit;
+  color: #FFFFFF;
+  font-size: 1.3em;
+  border: 0em;
+  margin-top: 1em;
+  cursor: pointer;
+}
+/*# sourceMappingURL=bundle.f37cd8d9.css.map*/
