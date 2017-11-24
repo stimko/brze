@@ -2,7 +2,6 @@ import "./reset.css";
 import "./fonts.css";
 import "./App.css";
 import SignUp from "./SignUp/SignUp";
-import 'whatwg-fetch';
 
 import React from "react";
 
