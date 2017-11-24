@@ -68,7 +68,7 @@
 /***/ "./build/assets.json":
 /***/ (function(module, exports) {
 
-module.exports = {"client":{"js":"/static/js/bundle.dad1b96c.js","css":"/static/css/bundle.f37cd8d9.css"}}
+module.exports = {"client":{"js":"/static/js/bundle.9fcdd67f.js","css":"/static/css/bundle.f37cd8d9.css"}}
 
 /***/ }),
 
@@ -329,7 +329,7 @@ var App = function App() {
           ),
           __WEBPACK_IMPORTED_MODULE_4_react___default.a.createElement(
             "a",
-            { href: "tel:+2018066564", className: "numberLink" },
+            { href: "sms:201-806-656-4", className: "numberLink" },
             "201.806.6564"
           )
         ),
@@ -977,7 +977,7 @@ if (false) {
   console.info('✅  Server-side HMR Enabled!');
 }
 
-var port = process.env.PORT || 3000;
+var port = "process.env.PORT" || 3000;
 
 /* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_0_express___default()().use(function (req, res) {
   return __WEBPACK_IMPORTED_MODULE_1__server__["a" /* default */].handle(req, res);
