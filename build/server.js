@@ -68,7 +68,7 @@
 /***/ "./build/assets.json":
 /***/ (function(module, exports) {
 
-module.exports = {"client":{"js":"/static/js/bundle.16b91aca.js","css":"/static/css/bundle.36499e19.css"}}
+module.exports = {"client":{"js":"/static/js/bundle.16b91aca.js","css":"/static/css/bundle.0aca68f6.css"}}
 
 /***/ }),
 
@@ -205,7 +205,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "body {\n  padding: 1em;\n}\n\nh1 {\n  font-size: 3em;\n  padding: 0.5em;\n  border-top: 0.05em solid #dadada;\n}\n\n.easy {\n  font-weight: 200;\n  font-size: 1.5em;\n}\n\n.brzeLogo {\n  width: 30em;\n}\n\n.makingPickupEasy {\n  font-weight: 200;\n}\n\n.carriers {\n  color: #00a39c;\n  font-weight: normal;\n  white-space: nowrap;\n}\n\n.intro {\n  background-color: #00a39c;\n  color: white;\n  font-size: 1.2em;\n  padding: 1.25em;\n  font-weight: 200;\n}\n\n.verticalBrze {\n  background-color: black;\n  padding: 0.4em 0.2em;\n  font-weight: 500;\n  font-size: 3em;\n  float: right;\n  color: white;\n  text-orientation: sideways;\n  writing-mode: vertical-rl;\n}\n\n.finally {\n  font-size: 1.5em;\n  font-weight: 200;\n  line-height: 1.3em;\n}\n\n.finally .carriers {\n  font-size: inherit;\n  color: inherit;\n  font-weight: 500;\n}\n\n.title {\n  font-size: 2em;\n  padding-bottom: 0.3em;\n}\n\n.fontWeight500 {\n  font-weight: 500;\n}\n\n.num {\n  color: #00a39c;\n  font-weight: 500;\n  font-size: 1.4em;\n  padding-right: 0.2em;\n}\n\n.numWrapper {\n  padding: 0.3em 0;\n}\n\n.currently {\n  font-weight: 500;\n  font-size: 0.8em;\n}\n\n.steps {\n  padding: 1em;\n  line-height: 1.4em;\n}\n", ""]);
+exports.push([module.i, "body {\n  padding: 1em;\n}\n\nh1 {\n  font-size: 2em;\n  padding: 0.5em;\n  border-top: 0.05em solid #dadada;\n}\n\n.easy {\n  font-weight: 200;\n  font-size: 1.5em;\n}\n\n.brzeLogo {\n  width: 100%;\n  max-width: 30em;\n}\n\n.makingPickupEasy {\n  font-weight: 200;\n}\n\n.carriers {\n  color: #00a39c;\n  font-weight: normal;\n  white-space: nowrap;\n}\n\n.intro {\n  background-color: #00a39c;\n  color: white;\n  padding: 1.25em;\n  font-weight: 200;\n}\n\n.verticalBrze {\n  background-color: black;\n  padding: 0.4em 0.2em;\n  font-weight: 500;\n  font-size: 3em;\n  float: right;\n  color: white;\n  text-orientation: sideways;\n  writing-mode: vertical-rl;\n}\n\n.finally {\n  font-size: 1.5em;\n  font-weight: 200;\n  line-height: 1.3em;\n}\n\n.finally .carriers {\n  font-size: inherit;\n  color: inherit;\n  font-weight: 500;\n}\n\n.title {\n  font-size: 2em;\n  padding-bottom: 0.3em;\n}\n\n.fontWeight500 {\n  font-weight: 500;\n}\n\n.num {\n  color: #00a39c;\n  font-weight: 500;\n  font-size: 1.4em;\n  padding-right: 0.2em;\n}\n\n.numWrapper {\n  padding: 0.3em 0;\n}\n\n.currently {\n  font-weight: 500;\n  font-size: 0.8em;\n}\n\n.steps {\n  padding: 1em;\n  line-height: 1.4em;\n}\n", ""]);
 
 // exports
 

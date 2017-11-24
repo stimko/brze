@@ -3,7 +3,7 @@ body {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 2em;
   padding: 0.5em;
   border-top: 0.05em solid #dadada;
 }
@@ -14,7 +14,8 @@ h1 {
 }
 
 .brzeLogo {
-  width: 30em;
+  width: 100%;
+  max-width: 30em;
 }
 
 .makingPickupEasy {
@@ -30,7 +31,6 @@ h1 {
 .intro {
   background-color: #00a39c;
   color: white;
-  font-size: 1.2em;
   padding: 1.25em;
   font-weight: 200;
 }
