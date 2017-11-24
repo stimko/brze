@@ -48,15 +48,22 @@ server
     });
   })
   .post('/api/signup', (req, postRes) => {
-    let phoneNumber = req.body.phone.replace(/\D/g, '');
-    const isValid10 = phoneNumber.match(/^\d{10}$/g) ? !!phoneNumber.match(/^\d{10}$/g).length : false;
-    const isValid11 = phoneNumber.match(/^1\d{10}$/g) ? !!phoneNumber.match(/^1\d{10}$/g).length : false;
-
-    if(isValid10){
-      phoneNumber = "1" + phoneNumber;
-    }
-    
-    if(!isValid10 && !isValid11){
+    let phoneNumber;
+    try {
+      phoneNumber = req.body.phone.replace(/\D/g, '');
+      const isValid10 = phoneNumber.match(/^\d{10}$/g) ? !!phoneNumber.match(/^\d{10}$/g).length : false;
+      const isValid11 = phoneNumber.match(/^1\d{10}$/g) ? !!phoneNumber.match(/^1\d{10}$/g).length : false;
+  
+      if(isValid10){
+        phoneNumber = "1" + phoneNumber;
+      }
+      
+      if(!isValid10 && !isValid11){
+        postRes.send("Please enter a valid phone number!");
+      }
+      
+    } catch (e) {
+      console.log(e);
       postRes.send("Please enter a valid phone number!");
     }
     
@@ -76,7 +83,10 @@ server
           postRes.send("This number is already signed up!");
         }
       })
-      .catch(e => console.error("Sign Up Failure", e));
+      .catch(e => {
+        postRes.send("There was an error signing up!");
+        console.error("Sign Up Failure", e);
+      });
   })
   .get("/*", (req, res) => {
     const markup = renderToString(<App />);

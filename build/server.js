@@ -1098,15 +1098,21 @@ server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default
     sendSms(fromNumber, postRes, message);
   });
 }).post('/api/signup', function (req, postRes) {
-  var phoneNumber = req.body.phone.replace(/\D/g, '');
-  var isValid10 = phoneNumber.match(/^\d{10}$/g) ? !!phoneNumber.match(/^\d{10}$/g).length : false;
-  var isValid11 = phoneNumber.match(/^1\d{10}$/g) ? !!phoneNumber.match(/^1\d{10}$/g).length : false;
+  var phoneNumber = void 0;
+  try {
+    phoneNumber = req.body.phone.replace(/\D/g, '');
+    var isValid10 = phoneNumber.match(/^\d{10}$/g) ? !!phoneNumber.match(/^\d{10}$/g).length : false;
+    var isValid11 = phoneNumber.match(/^1\d{10}$/g) ? !!phoneNumber.match(/^1\d{10}$/g).length : false;
 
-  if (isValid10) {
-    phoneNumber = "1" + phoneNumber;
-  }
+    if (isValid10) {
+      phoneNumber = "1" + phoneNumber;
+    }
 
-  if (!isValid10 && !isValid11) {
+    if (!isValid10 && !isValid11) {
+      postRes.send("Please enter a valid phone number!");
+    }
+  } catch (e) {
+    console.log(e);
     postRes.send("Please enter a valid phone number!");
   }
 
@@ -1127,7 +1133,8 @@ server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default
       postRes.send("This number is already signed up!");
     }
   }).catch(function (e) {
-    return console.error("Sign Up Failure", e);
+    postRes.send("There was an error signing up!");
+    console.error("Sign Up Failure", e);
   });
 }).get("/*", function (req, res) {
   var markup = Object(__WEBPACK_IMPORTED_MODULE_5_react_dom_server__["renderToString"])(__WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__App__["a" /* default */], null));
