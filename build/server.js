@@ -977,7 +977,7 @@ if (false) {
   console.info('✅  Server-side HMR Enabled!');
 }
 
-var port = "process.env.PORT" || 3000;
+var port = process.env.PORT;
 
 /* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_0_express___default()().use(function (req, res) {
   return __WEBPACK_IMPORTED_MODULE_1__server__["a" /* default */].handle(req, res);
@@ -1042,7 +1042,6 @@ var pgClient = new Client({ ssl: true });
 var TWILIO_ACCOUNT_SID = "AC5f2cc96da38dbfe3013685ca1d957b31";
 var TWILIO_AUTH_TOKEN = "adaca3c80d074c60fd8e6f0422aee6ec";
 var TWILIO_NUMBER = "12018066564";
-console.log(Object({"NODE_ENV":"production","PORT":3000,"VERBOSE":false,"HOST":"localhost","RAZZLE_ASSETS_MANIFEST":"/Users/stephentimko/Documents/projects/brze/build/assets.json","BUILD_TARGET":"server","RAZZLE_PUBLIC_DIR":"./build/public","RAZZLE_PORT":"process.env.PORT","RAZZLE_TWILIO_ACCOUNT_SID":"AC5f2cc96da38dbfe3013685ca1d957b31","RAZZLE_TWILIO_AUTH_TOKEN":"adaca3c80d074c60fd8e6f0422aee6ec","RAZZLE_TWILIO_NUMBER":"12018066564"}));
 var twilioClient = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
 var startPgClient = function () {
