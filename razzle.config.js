@@ -4,7 +4,6 @@ module.exports = {
 
     if(target === 'web'){
       appConfig.entry.client.unshift('whatwg-fetch');
-      console.log(appConfig.entry);
     }
     return appConfig;
   }
