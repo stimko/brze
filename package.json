@@ -13,6 +13,7 @@
     "body-parser": "^1.18.2",
     "express": "^4.15.2",
     "pg": "^7.4.0",
+    "razzle": "^0.8.4",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "twilio": "^3.10.0"
@@ -20,7 +21,6 @@
   "devDependencies": {
     "babel-runtime": "^6.26.0",
     "raf": "^3.3.2",
-    "razzle": "^0.8.4",
     "whatwg-fetch": "^2.0.3"
   }
 }
