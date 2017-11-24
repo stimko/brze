@@ -60,7 +60,6 @@ class SignUpForm extends React.Component {
         body: JSON.stringify(this.state)
       })
         .then(resp => {
-          debugger;
           if(resp.ok) {
             return resp.text();
           }
@@ -122,7 +121,7 @@ class SignUpForm extends React.Component {
         </div>
         <div className="signUpInputWrapper">
           <div>State*</div>
-          <select defaultValue="NJ" onChange={this.handleChange("state")}>
+          <select className="signUpInput" defaultValue="NJ" onChange={this.handleChange("state")}>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>

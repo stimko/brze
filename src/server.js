@@ -26,13 +26,13 @@ const findUserByNumberQuery = (num) => ({
   values: [num]
 });
 
-const sendSms = (num, res, msg) => {
+const sendSms = (num, res, msg, responseMessage) => {
   twilioClient.messages.create({
     to: num,
     from: TWILIO_NUMBER,
     body: msg
   }, function(err, data) {
-    res.send('Message is inbound!');
+    res.send(responseMessage);
   });
 }
 
@@ -43,35 +43,37 @@ server
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
   .post('/api/text', (req, postRes) => {
+    console.log(req.params, req, req.param('from'));
     pgClient.query(findUserByNumberQuery(req.param('from'))).then(res => {
       var message = res.rows.length ? 'Welcome to Brze! Please check back soon for beta!' : 'Welcome to Brze! Please register an account at brze.io and check back for beta!';
       sendSms(req.param('from'), postRes,  message);
     });
   })
   .post('/api/signup', (req, postRes) => {
-    let num = req.body.phone.replace(/\-|\s|\(|\)/g, '');
-    const isValid10 = !!num.match(/\d{10}/g).length;
-    const isValid11 = !!num.match(/1\d{10}/g).length;
+    let phoneNumber = req.body.phone.replace(/\D/g, '');
+    const isValid10 = phoneNumber.match(/^\d{10}$/g) ? !!phoneNumber.match(/^\d{10}$/g).length : false;
+    const isValid11 = phoneNumber.match(/^1\d{10}$/g) ? !!phoneNumber.match(/^1\d{10}$/g).length : false;
 
     if(isValid10){
-      num = "1" + num;
+      phoneNumber = "1" + phoneNumber;
     }
     
     if(!isValid10 && !isValid11){
-      postRes.send("Please enter a valid phone number");
+      postRes.send("Please enter a valid phone number!");
     }
-    pgClient.query(findUserByNumberQuery(req.body.phone))
+    
+    pgClient.query(findUserByNumberQuery(phoneNumber))
       .then(res => {
         if(!res.rows.length){
           const query = {
             name: 'write-breezer',
             text: 'INSERT INTO breezers (phone, name, address, addressoptional, zip, email, city, password, state) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
-            values: [req.body.phone, req.body.name, req.body.address, req.body.addressoptional, req.body.zip, req.body.email, req.body.city, req.body.password, req.body.state]
+            values: [phoneNumber, req.body.name, req.body.address, req.body.addressoptional, req.body.zip, req.body.email, req.body.city, req.body.password, req.body.state]
           }
           pgClient.query(query).then(res => {
             console.log("see if phone is correct", req.body);
-            sendSms(req.body.phone, postRes, 'Welcome to Brze! Please check back soon for beta!');
-          }).catch(e => console.log("Write Failure", e))
+            sendSms(phoneNumber, postRes, 'Welcome to Brze! Please check back soon for beta!', 'You have successfully signed up, and should be receiving a text message to confirm.');
+          }).catch(e =>  postRes.send("There was an error!"))
         } else {
           postRes.send("This number is already signed up!");
         }

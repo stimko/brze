@@ -68,7 +68,7 @@
 /***/ "./build/assets.json":
 /***/ (function(module, exports) {
 
-module.exports = {"client":{"js":"/static/js/bundle.4b486d5f.js","css":"/static/css/bundle.117ee951.css"}}
+module.exports = {"client":{"js":"/static/js/bundle.16b91aca.js","css":"/static/css/bundle.36499e19.css"}}
 
 /***/ }),
 
@@ -376,7 +376,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".signUp {\n  border-top: .05em solid #DADADA;\n  padding: 2em;\n}\n\n.signUpTitle {\n  font-size: 2em;\n}\n\n.signUpInputWrapper {\n  padding-top: 1em;\n  font-size: 1.5em;\n}\n\n.signUpInput {\n  padding: 0.2em;\n  font-size: 1.5em;\n}\n\n.err {\n  font-size: 2em;\n}\n\n.signUpButton {\n  width: 110px;\n  height: 50px;\n  background-color: #000000;\n  font-family: inherit;\n  color: #FFFFFF;\n  font-size: 1.3em;\n  border: 0em;\n  margin-top: 1em;\n  cursor: pointer;\n}", ""]);
+exports.push([module.i, ".signUp {\n  border-top: .05em solid #DADADA;\n  padding: 2em;\n}\n\n.signUpTitle {\n  font-size: 2em;\n}\n\n.signUpInputWrapper {\n  padding-top: 1em;\n  font-size: 1.5em;\n}\n\n.signUpInput {\n  padding: 0.2em;\n  font-size: 1em;\n}\n\n.err {\n  font-size: 2em;\n}\n\n.signUpButton {\n  width: 110px;\n  height: 50px;\n  background-color: #000000;\n  font-family: inherit;\n  color: #FFFFFF;\n  font-size: 1.3em;\n  border: 0em;\n  margin-top: 1em;\n  cursor: pointer;\n}", ""]);
 
 // exports
 
@@ -507,7 +507,6 @@ var SignUpForm = function (_React$Component) {
           method: "POST",
           body: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()(this.state)
         }).then(function (resp) {
-          debugger;
           if (resp.ok) {
             return resp.text();
           }
@@ -607,7 +606,7 @@ var SignUpForm = function (_React$Component) {
           ),
           __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             "select",
-            { defaultValue: "NJ", onChange: this.handleChange("state") },
+            { className: "signUpInput", defaultValue: "NJ", onChange: this.handleChange("state") },
             __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               "option",
               { value: "AL" },
@@ -1078,46 +1077,48 @@ var findUserByNumberQuery = function findUserByNumberQuery(num) {
   };
 };
 
-var sendSms = function sendSms(num, res, msg) {
+var sendSms = function sendSms(num, res, msg, responseMessage) {
   twilioClient.messages.create({
     to: num,
     from: TWILIO_NUMBER,
     body: msg
   }, function (err, data) {
-    res.send('Message is inbound!');
+    res.send(responseMessage);
   });
 };
 
 var server = __WEBPACK_IMPORTED_MODULE_4_express___default()();
 server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default.a.static("/Users/stephentimko/Documents/projects/brze/build/public")).use(bodyParser.urlencoded({ extended: true })).use(bodyParser.json()).post('/api/text', function (req, postRes) {
+  console.log(req.params, req, req.param('from'));
   pgClient.query(findUserByNumberQuery(req.param('from'))).then(function (res) {
     var message = res.rows.length ? 'Welcome to Brze! Please check back soon for beta!' : 'Welcome to Brze! Please register an account at brze.io and check back for beta!';
     sendSms(req.param('from'), postRes, message);
   });
 }).post('/api/signup', function (req, postRes) {
-  var num = req.body.phone.replace(/\-|\s|\(|\)/g, '');
-  var isValid10 = !!num.match(/\d{10}/g).length;
-  var isValid11 = !!num.match(/1\d{10}/g).length;
+  var phoneNumber = req.body.phone.replace(/\D/g, '');
+  var isValid10 = phoneNumber.match(/^\d{10}$/g) ? !!phoneNumber.match(/^\d{10}$/g).length : false;
+  var isValid11 = phoneNumber.match(/^1\d{10}$/g) ? !!phoneNumber.match(/^1\d{10}$/g).length : false;
 
   if (isValid10) {
-    num = "1" + num;
+    phoneNumber = "1" + phoneNumber;
   }
 
   if (!isValid10 && !isValid11) {
-    postRes.send("Please enter a valid phone number");
+    postRes.send("Please enter a valid phone number!");
   }
-  pgClient.query(findUserByNumberQuery(req.body.phone)).then(function (res) {
+
+  pgClient.query(findUserByNumberQuery(phoneNumber)).then(function (res) {
     if (!res.rows.length) {
       var query = {
         name: 'write-breezer',
         text: 'INSERT INTO breezers (phone, name, address, addressoptional, zip, email, city, password, state) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
-        values: [req.body.phone, req.body.name, req.body.address, req.body.addressoptional, req.body.zip, req.body.email, req.body.city, req.body.password, req.body.state]
+        values: [phoneNumber, req.body.name, req.body.address, req.body.addressoptional, req.body.zip, req.body.email, req.body.city, req.body.password, req.body.state]
       };
       pgClient.query(query).then(function (res) {
         console.log("see if phone is correct", req.body);
-        sendSms(req.body.phone, postRes, 'Welcome to Brze! Please check back soon for beta!');
+        sendSms(phoneNumber, postRes, 'Welcome to Brze! Please check back soon for beta!', 'You have successfully signed up, and should be receiving a text message to confirm.');
       }).catch(function (e) {
-        return console.log("Write Failure", e);
+        return postRes.send("There was an error!");
       });
     } else {
       postRes.send("This number is already signed up!");
