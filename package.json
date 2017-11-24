@@ -16,11 +16,11 @@
     "pg": "^7.4.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "twilio": "^3.10.0"
+    "twilio": "^3.10.0",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "razzle": "^0.8.4",
-    "raf": "^3.3.2",
-    "whatwg-fetch": "^2.0.3"
+    "raf": "^3.3.2"
   }
 }
