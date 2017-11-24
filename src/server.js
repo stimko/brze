@@ -43,10 +43,10 @@ server
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
   .post('/api/text', (req, postRes) => {
-    console.log(req.params, req, req.param('from'));
+    console.log(req.body);
     pgClient.query(findUserByNumberQuery(req.param('from'))).then(res => {
       var message = res.rows.length ? 'Welcome to Brze! Please check back soon for beta!' : 'Welcome to Brze! Please register an account at brze.io and check back for beta!';
-      sendSms(req.param('from'), postRes,  message);
+      sendSms(req.body.FROM, postRes,  message);
     });
   })
   .post('/api/signup', (req, postRes) => {

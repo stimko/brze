@@ -1089,10 +1089,10 @@ var sendSms = function sendSms(num, res, msg, responseMessage) {
 
 var server = __WEBPACK_IMPORTED_MODULE_4_express___default()();
 server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default.a.static("./build/public")).use(bodyParser.urlencoded({ extended: true })).use(bodyParser.json()).post('/api/text', function (req, postRes) {
-  console.log(req.params, req, req.param('from'));
+  console.log(req.body);
   pgClient.query(findUserByNumberQuery(req.param('from'))).then(function (res) {
     var message = res.rows.length ? 'Welcome to Brze! Please check back soon for beta!' : 'Welcome to Brze! Please register an account at brze.io and check back for beta!';
-    sendSms(req.param('from'), postRes, message);
+    sendSms(req.body.FROM, postRes, message);
   });
 }).post('/api/signup', function (req, postRes) {
   var phoneNumber = req.body.phone.replace(/\D/g, '');
