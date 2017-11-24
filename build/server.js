@@ -977,7 +977,7 @@ if (false) {
   console.info('✅  Server-side HMR Enabled!');
 }
 
-var port = 3000 || 3000;
+var port = process.env.PORT;
 
 /* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_0_express___default()().use(function (req, res) {
   return __WEBPACK_IMPORTED_MODULE_1__server__["a" /* default */].handle(req, res);
@@ -1088,7 +1088,7 @@ var sendSms = function sendSms(num, res, msg, responseMessage) {
 };
 
 var server = __WEBPACK_IMPORTED_MODULE_4_express___default()();
-server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default.a.static("/Users/stephentimko/Documents/projects/brze/build/public")).use(bodyParser.urlencoded({ extended: true })).use(bodyParser.json()).post('/api/text', function (req, postRes) {
+server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default.a.static("./build/public")).use(bodyParser.urlencoded({ extended: true })).use(bodyParser.json()).post('/api/text', function (req, postRes) {
   console.log(req.params, req, req.param('from'));
   pgClient.query(findUserByNumberQuery(req.param('from'))).then(function (res) {
     var message = res.rows.length ? 'Welcome to Brze! Please check back soon for beta!' : 'Welcome to Brze! Please register an account at brze.io and check back for beta!';
