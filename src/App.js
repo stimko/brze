@@ -2,6 +2,7 @@ import "./reset.css";
 import "./fonts.css";
 import "./App.css";
 import SignUp from "./SignUp/SignUp";
+import 'es6-promise/auto';
 import 'whatwg-fetch';
 
 import React from "react";

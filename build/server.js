@@ -68,7 +68,7 @@
 /***/ "./build/assets.json":
 /***/ (function(module, exports) {
 
-module.exports = {"client":{"js":"/static/js/bundle.3b38c47d.js","css":"/static/css/bundle.a2f2403f.css"}}
+module.exports = {"client":{"js":"/static/js/bundle.5651be11.js","css":"/static/css/bundle.a2f2403f.css"}}
 
 /***/ }),
 
@@ -223,10 +223,13 @@ exports.push([module.i, "body {\n  padding: 1em;\n}\n\nh1 {\n  font-size: 2em;\n
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__App_css__ = __webpack_require__("./src/App.css");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__App_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__App_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__SignUp_SignUp__ = __webpack_require__("./src/SignUp/SignUp.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_whatwg_fetch__ = __webpack_require__("whatwg-fetch");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_whatwg_fetch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_whatwg_fetch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__("react");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_es6_promise_auto__ = __webpack_require__("es6-promise/auto");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_es6_promise_auto___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_es6_promise_auto__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_whatwg_fetch__ = __webpack_require__("whatwg-fetch");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_whatwg_fetch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_whatwg_fetch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react__ = __webpack_require__("react");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react__);
+
 
 
 
@@ -236,7 +239,7 @@ exports.push([module.i, "body {\n  padding: 1em;\n}\n\nh1 {\n  font-size: 2em;\n
 
 
 var num = function num(n) {
-  return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+  return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
     "span",
     { className: "num" },
     n
@@ -244,119 +247,119 @@ var num = function num(n) {
 };
 
 var App = function App() {
-  return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+  return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
     "div",
     null,
-    __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement("img", { className: "brzeLogo", alt: "Brze", src: "/images/brze.png" }),
-    __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+    __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement("img", { className: "brzeLogo", alt: "Brze", src: "/images/brze.png" }),
+    __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
       "h1",
       null,
-      __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+      __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
         "span",
         { className: "makingPickupEasy" },
         "Making pickup easy! "
       ),
-      __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+      __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
         "span",
         { className: "carriers" },
         "FedEx \u2022 USPS \u2022 UPS"
       )
     ),
-    __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+    __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
       "div",
       { className: "intro" },
-      __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+      __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
         "div",
         { className: "title" },
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           "span",
           { className: "fontWeight500" },
           "Introducing Brze. "
         ),
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           "span",
           null,
           "Returns Made Easy!"
         )
       ),
-      __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+      __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
         "div",
         { className: "finally" },
         "Finally, an affordable service that will pick up your package/s from your home and drop them off at",
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           "span",
           { className: "carriers" },
           " FedEx, USPS, or UPS."
         )
       )
     ),
-    __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+    __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
       "div",
       { className: "easy" },
-      __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+      __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
         "div",
         { className: "verticalBrze" },
         "Brze"
       ),
-      __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+      __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
         "div",
         { className: "steps" },
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           "span",
           null,
           "It\u2019s as simple as",
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             "span",
             { className: "fontWeight500" },
             " 1, 2, 3"
           ),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             "span",
             null,
             "!"
           )
         ),
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           "div",
           { className: "numWrapper" },
           num("1 "),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             "span",
             { className: "fontWeight500" },
             "TEXT US "
           ),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             "span",
             null,
             "at "
           ),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             "a",
             { href: "sms:201-806-656-4", className: "numberLink" },
             "201.806.6564"
           )
         ),
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           "div",
           { className: "numWrapper" },
           num("2 "),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             "span",
             null,
             "We come and pickup your packages*"
           )
         ),
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           "div",
           { className: "numWrapper" },
           num("3 "),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             "span",
             null,
             "We text you a confirmation that inclides an image and tracking number after delivery"
           )
         ),
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           "div",
           { className: "currently" },
           " *Currently in Summit, NJ Only"
@@ -984,7 +987,7 @@ if (false) {
   console.info('✅  Server-side HMR Enabled!');
 }
 
-var port = process.env.PORT;
+var port = "process.env.PORT" || 3000;
 
 /* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_0_express___default()().use(function (req, res) {
   return __WEBPACK_IMPORTED_MODULE_1__server__["a" /* default */].handle(req, res);
@@ -1230,6 +1233,13 @@ module.exports = require("babel-runtime/regenerator");
 /***/ (function(module, exports) {
 
 module.exports = require("body-parser");
+
+/***/ }),
+
+/***/ "es6-promise/auto":
+/***/ (function(module, exports) {
+
+module.exports = require("es6-promise/auto");
 
 /***/ }),
 
