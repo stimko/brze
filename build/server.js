@@ -68,7 +68,7 @@
 /***/ "./build/assets.json":
 /***/ (function(module, exports) {
 
-module.exports = {"client":{"js":"/static/js/bundle.9fcdd67f.js","css":"/static/css/bundle.f37cd8d9.css"}}
+module.exports = {"client":{"js":"/static/js/bundle.6e8da997.js","css":"/static/css/bundle.a2f2403f.css"}}
 
 /***/ }),
 
@@ -376,7 +376,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".signUp {\n  border-top: .05em solid #DADADA;\n  padding: 2em;\n}\n\n.signUpTitle {\n  font-size: 2em;\n}\n\n.signUpInputWrapper {\n  padding-top: 1em;\n  font-size: 1.5em;\n}\n\n.signUpInput {\n  padding: 0.2em;\n  font-size: 1em;\n}\n\n.err {\n  font-size: 2em;\n}\n\n.signUpButton {\n  width: 110px;\n  height: 50px;\n  background-color: #000000;\n  font-family: inherit;\n  color: #FFFFFF;\n  font-size: 1.3em;\n  border: 0em;\n  margin-top: 1em;\n  cursor: pointer;\n}", ""]);
+exports.push([module.i, ".signUp {\n  border-top: .05em solid #DADADA;\n  padding: 2em;\n}\n\n.signUpTitle {\n  font-size: 2em;\n}\n\n.signUpInputWrapper {\n  padding-top: 1em;\n  font-size: 1.5em;\n}\n\n.signUpInput {\n  padding: 0.2em;\n  font-size: 1em;\n}\n\n.err {\n  font-size: 2em;\n}\n\n.signUpButton {\n  width: 110px;\n  height: 50px;\n  background-color: #000000;\n  font-family: inherit;\n  color: #FFFFFF;\n  font-size: 1.3em;\n  border: none;\n  border-radius: 0;\n  margin-top: 1em;\n  cursor: pointer;\n}", ""]);
 
 // exports
 
@@ -574,7 +574,7 @@ var SignUpForm = function (_React$Component) {
           __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             "div",
             null,
-            "City"
+            "City*"
           ),
           __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement("input", {
             className: "signUpInput",
@@ -588,7 +588,7 @@ var SignUpForm = function (_React$Component) {
           __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             "div",
             null,
-            "Zip Code"
+            "Zip Code*"
           ),
           __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement("input", {
             className: "signUpInput",
