@@ -36,8 +36,8 @@ const App = () => (
         <div className="numWrapper">
           {num("1 ")}
           <span className="fontWeight500">TEXT US </span>
-          <span>at</span>
-          <span className="fontWeight500"> 848.702.3698</span>
+          <span>at </span>
+          <a href="tel:+2018066564" className="numberLink">201.806.6564</a>
         </div>
         <div className="numWrapper">
           {num("2 ")}
