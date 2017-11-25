@@ -1106,6 +1106,9 @@ var sendSms = function sendSms(num, res, msg) {
     from: TWILIO_NUMBER,
     body: msg
   }, function (err, data) {
+    if (err) {
+      console.log(err);
+    }
     res.send(responseMessage);
   });
 };
