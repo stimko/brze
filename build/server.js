@@ -68,7 +68,7 @@
 /***/ "./build/assets.json":
 /***/ (function(module, exports) {
 
-module.exports = {"client":{"js":"/static/js/bundle.5651be11.js","css":"/static/css/bundle.a2f2403f.css"}}
+module.exports = {"client":{"js":"/static/js/bundle.ed81b361.js","css":"/static/css/bundle.a2f2403f.css"}}
 
 /***/ }),
 
@@ -409,7 +409,7 @@ var SignUp = function SignUp() {
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       "div",
       { className: "signUpTitle" },
-      "Sign Up For Brze!"
+      "Signing up is a Brze!"
     ),
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       "div",
@@ -987,7 +987,7 @@ if (false) {
   console.info('✅  Server-side HMR Enabled!');
 }
 
-var port = process.env.PORT;
+var port = "process.env.PORT" || 3000;
 
 /* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_0_express___default()().use(function (req, res) {
   return __WEBPACK_IMPORTED_MODULE_1__server__["a" /* default */].handle(req, res);
@@ -1161,7 +1161,7 @@ server.disable("x-powered-by").use(__WEBPACK_IMPORTED_MODULE_4_express___default
   });
 }).get("/*", function (req, res) {
   var markup = Object(__WEBPACK_IMPORTED_MODULE_5_react_dom_server__["renderToString"])(__WEBPACK_IMPORTED_MODULE_3_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__App__["a" /* default */], null));
-  res.send("<!doctype html>\n    <html lang=\"\">\n    <head>\n        <meta httpEquiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n        <meta charSet='utf-8' />\n        <title>Welcome to Razz a mataz</title>\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n        " + (assets.client.css ? "<link rel=\"stylesheet\" href=\"" + assets.client.css + "\">" : "") + "\n         " + ( true ? "<script src=\"" + assets.client.js + "\" defer></script>" : "<script src=\"" + assets.client.js + "\" defer crossorigin></script>") + "\n    </head>\n    <body>\n        <div id=\"root\">" + markup + "</div>\n    </body>\n</html>");
+  res.send("<!doctype html>\n    <html lang=\"\">\n    <head>\n        <meta httpEquiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n        <meta charSet='utf-8' />\n        <title>Brze</title>\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n        " + (assets.client.css ? "<link rel=\"stylesheet\" href=\"" + assets.client.css + "\">" : "") + "\n         " + ( true ? "<script src=\"" + assets.client.js + "\" defer></script>" : "<script src=\"" + assets.client.js + "\" defer crossorigin></script>") + "\n    </head>\n    <body>\n        <div id=\"root\">" + markup + "</div>\n    </body>\n</html>");
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (server);

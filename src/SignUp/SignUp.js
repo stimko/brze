@@ -4,7 +4,7 @@ import './SignUp.css';
 
 const SignUp = () => (
   <div className="signUp">
-    <div className="signUpTitle">Sign Up For Brze!</div>
+    <div className="signUpTitle">Signing up is a Brze!</div>
     <div> Required Field*</div>
     <SignUpForm />
   </div>
